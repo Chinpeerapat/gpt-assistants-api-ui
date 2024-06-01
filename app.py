@@ -271,6 +271,8 @@ def main():
             authenticator.logout(location="sidebar")
 
     st.title(assistant_title)
+    url = "https://www.linkedin.com/in/chpeerapat"
+    st.write("Due to the limitations of LLM, the assistant could provide inaccurate answers. Please feel free to double check with Chin via [linkedin](%s)" % url)
     user_msg = st.chat_input(
         "Message", on_submit=disable_form, disabled=st.session_state.in_progress
     )
