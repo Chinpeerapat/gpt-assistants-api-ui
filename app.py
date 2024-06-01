@@ -271,10 +271,10 @@ def main():
             authenticator.logout(location="sidebar")
 
     
-with st.sidebar:
-    components.html(embed_component['linkedin'], height=310)
-    embed_compotent= {'linkedin':"""<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
-    <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="HORIZONTAL" data-vanity="chpeerapat" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://th.linkedin.com/in/chpeerapat?trk=profile-badge">Peerapat Chiaprasert</a></div>"""}
+##with st.sidebar:
+##    components.html(embed_component['linkedin'], height=310)
+##    embed_compotent= {'linkedin':"""<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+##    <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="HORIZONTAL" data-vanity="chpeerapat" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://th.linkedin.com/in/chpeerapat?trk=profile-badge">Peerapat Chiaprasert</a></div>"""}
               
     st.title(assistant_title)
     url = "https://www.linkedin.com/in/chpeerapat"
