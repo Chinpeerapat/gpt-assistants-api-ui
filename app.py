@@ -196,7 +196,7 @@ def format_annotation(text):
     citations = []
     text_value = text.value
     for index, annotation in enumerate(text.annotations):
-        text_value = text.value.replace(annotation.text, f" [{index}]")
+    #    text_value = text.value.replace(annotation.text, f" [{index}]")
 
         if file_citation := getattr(annotation, "file_citation", None):
             cited_file = client.files.retrieve(file_citation.file_id)
@@ -209,7 +209,7 @@ def format_annotation(text):
                 file_path.file_id,
             )
             text_value = re.sub(r"\[(.*?)\]\s*\(\s*(.*?)\s*\)", link_tag, text_value)
-    text_value += "\n\n" + "\n".join(citations)
+    #text_value += "\n\n" + "\n".join(citations)
     return text_value
 
 
