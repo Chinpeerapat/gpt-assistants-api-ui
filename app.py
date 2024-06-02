@@ -212,6 +212,18 @@ def create_file_link(file_name, file_id):
 #     text_value += "\n\n" + "\n".join(citations)
 #     return text_value
 
+def format_annotation(text):
+    text_value = text.value
+    for annotation in text.annotations:
+        # Replace the illegible substring with an empty string
+        text_value = text_value.replace(annotation.text, "")
+
+        if file_citation := getattr(annotation, "file_citation", None):
+            continue  # Skip processing file citations
+        elif file_path := getattr(annotation, "file_path", None):
+            continue  # Skip processing file paths
+
+    return text_value
 
 def run_stream(user_input, file):
     if "thread" not in st.session_state:
