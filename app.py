@@ -26,8 +26,7 @@ azure_openai_key = os.environ.get("AZURE_OPENAI_KEY")
 openai_api_key = os.environ.get("OPENAI_API_KEY")
 authentication_required = str_to_bool(os.environ.get("AUTHENTICATION_REQUIRED", False))
 assistant_id = os.environ.get("ASSISTANT_ID")
-instructions = os.environ.get("RUN_INSTRUCTIONS", "")
-addtional_instructions = os.environ.get("ADDITIONAL_INSTRUCTIONS","")
+addtional_instructions = os.environ.get("ADDITIONAL_INSTRUCTIONS")
 assistant_title = os.environ.get("ASSISTANT_TITLE", "Assistants API UI")
 enabled_file_upload_message = os.environ.get(
     "ENABLED_FILE_UPLOAD_MESSAGE", "Upload a file"
@@ -193,25 +192,25 @@ def create_file_link(file_name, file_id):
     return link_tag
 
 
-def format_annotation(text):
-    citations = []
-    text_value = text.value
-    for index, annotation in enumerate(text.annotations):
-    #    text_value = text.value.replace(annotation.text, f" [{index}]")
+# def format_annotation(text):
+#     citations = []
+#     text_value = text.value
+#     for index, annotation in enumerate(text.annotations):
+#         text_value = text.value.replace(annotation.text, f" [{index}]")
 
-        if file_citation := getattr(annotation, "file_citation", None):
-            cited_file = client.files.retrieve(file_citation.file_id)
-            citations.append(
-                f"[{index}] {file_citation.quote} from {cited_file.filename}"
-            )
-        elif file_path := getattr(annotation, "file_path", None):
-            link_tag = create_file_link(
-                annotation.text.split("/")[-1],
-                file_path.file_id,
-            )
-            text_value = re.sub(r"\[(.*?)\]\s*\(\s*(.*?)\s*\)", link_tag, text_value)
-    #text_value += "\n\n" + "\n".join(citations)
-    return text_value
+#         if file_citation := getattr(annotation, "file_citation", None):
+#             cited_file = client.files.retrieve(file_citation.file_id)
+#             citations.append(
+#                 f"[{index}] {file_citation.quote} from {cited_file.filename}"
+#             )
+#         elif file_path := getattr(annotation, "file_path", None):
+#             link_tag = create_file_link(
+#                 annotation.text.split("/")[-1],
+#                 file_path.file_id,
+#             )
+#             text_value = re.sub(r"\[(.*?)\]\s*\(\s*(.*?)\s*\)", link_tag, text_value)
+#     text_value += "\n\n" + "\n".join(citations)
+#     return text_value
 
 
 def run_stream(user_input, file):
