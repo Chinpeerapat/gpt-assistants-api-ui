@@ -27,6 +27,7 @@ openai_api_key = os.environ.get("OPENAI_API_KEY")
 authentication_required = str_to_bool(os.environ.get("AUTHENTICATION_REQUIRED", False))
 assistant_id = os.environ.get("ASSISTANT_ID")
 instructions = os.environ.get("RUN_INSTRUCTIONS", "")
+addtional_instructions = os.environ.get("ADDITIONAL_INSTRUCTIONS","")
 assistant_title = os.environ.get("ASSISTANT_TITLE", "Assistants API UI")
 enabled_file_upload_message = os.environ.get(
     "ENABLED_FILE_UPLOAD_MESSAGE", "Upload a file"
@@ -220,6 +221,7 @@ def run_stream(user_input, file):
     with client.beta.threads.runs.stream(
         thread_id=st.session_state.thread.id,
         assistant_id=assistant_id,
+        additional_instructions=additional_instructions,
         event_handler=EventHandler(),
     ) as stream:
         stream.until_done()
@@ -270,11 +272,6 @@ def main():
         else:
             authenticator.logout(location="sidebar")
 
-    
-##with st.sidebar:
-##    components.html(embed_component['linkedin'], height=310)
-##    embed_compotent= {'linkedin':"""<script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
-##    <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="HORIZONTAL" data-vanity="chpeerapat" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://th.linkedin.com/in/chpeerapat?trk=profile-badge">Peerapat Chiaprasert</a></div>"""}
               
     st.title(assistant_title)
     url = "https://www.linkedin.com/in/chpeerapat"
