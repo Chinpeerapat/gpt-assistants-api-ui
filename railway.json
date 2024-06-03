@@ -9,9 +9,9 @@
   "env": {
     "OPENAI_API_KEY": "",
     "ASSISTANT_ID": "",
-    "ASSISTANT_TITLE": "".
+    "ASSISTANT_TITLE": "",
     "ENABLED_FILE_UPLOAD_MESSAGE": "",
     "AUTHENTICATION_REQUIRED": "",
-    "ADDITIONAL_INSTRUCTIONS": "",
+    "ADDITIONAL_INSTRUCTIONS": ""
   }
 }
