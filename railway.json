@@ -1,6 +1,17 @@
 {
-    "$schema": "https://schema.up.railway.app/railway.schema.json",
-    "deploy": {
-        "startCommand": "streamlit run Hello.py --server.address 0.0.0.0 --server.port $PORT --server.fileWatcherType none --browser.gatherUsageStats false --client.showErrorDetails false --client.toolbarMode minimal"
-    }
+  "build": {
+    "builder": "poetry",
+    "commands": [
+      "poetry install"
+    ]
+  },
+  "start": "streamlit run app.py",
+  "env": {
+    "OPENAI_API_KEY":""
+    "ASSISTANT_ID"=""
+    "ASSISTANT_TITLE"=""
+    "ENABLED_FILE_UPLOAD_MESSAGE"=""
+    "AUTHENTICATION_REQUIRED=""
+    "ADDITIONAL_INSTRUCTIONS=""
+  }
 }
