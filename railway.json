@@ -1,17 +1,10 @@
 {
-  "build": {
-    "builder": "poetry",
-    "commands": [
-      "poetry install"
-    ]
-  },
-  "start": "streamlit run app.py",
-  "env": {
-    "OPENAI_API_KEY": "",
-    "ASSISTANT_ID": "",
-    "ASSISTANT_TITLE": "",
-    "ENABLED_FILE_UPLOAD_MESSAGE": "",
-    "AUTHENTICATION_REQUIRED": "",
-    "ADDITIONAL_INSTRUCTIONS": ""
-  }
+    "$schema": "https://railway.app/railway.schema.json",
+    "build": {
+        "builder": "NIXPACKS",
+        "buildcommand": "poetry install"
+    },
+    "deploy": {
+        "startCommand": "streamlit run app.py --server.address 0.0.0.0 --server.port $PORT --server.fileWatcherType none --browser.gatherUsageStats false --client.toolbarMode minimal"
+    }
 }
